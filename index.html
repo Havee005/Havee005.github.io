@@ -1,0 +1,637 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Haveenash Umamaheswaran</title>
+<meta name="description" content="Haveenash Umamaheswaran: robotic engineer working on sensor fusion, controls and ROS.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+  /* Palette taken from the portfolio deck: four teal steps on a deep teal ground. */
+  :root {
+    color-scheme: dark;
+    --teal-900: #073D40;   /* page ground, About panel */
+    --teal-800: #085558;   /* Projects panel, contact bar */
+    --teal-700: #0D6F73;   /* Experience panel, image rings */
+    --teal-400: #549A9C;   /* Contact panel */
+    --ink: #FFFFFF;
+    --ink-soft: rgba(255,255,255,.85);   /* ≥4.7:1 on every teal surface */
+    --ink-muted: rgba(255,255,255,.7);   /* small labels, ≥4.5:1 on cards */
+    --ink-faint: rgba(255,255,255,.35);  /* decorative lines only, never text */
+    --ink-on-light: #032426;             /* text on the light Contact panel, 5:1 */
+    --card: rgba(13,111,115,.6);
+    --display: "Cinzel", "Trajan Pro", "Times New Roman", serif;
+    --body: "EB Garamond", Garamond, "Times New Roman", serif;
+    --gutter: clamp(16px, 4vw, 56px);
+    --max: 1240px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--teal-900);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 1.2rem;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  a:focus-visible, button:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding-inline: var(--gutter); }
+  h1, h2, h3 { font-family: var(--display); font-weight: 600; text-wrap: balance; margin: 0; }
+  .section-title {
+    font-size: clamp(2.4rem, 6vw, 4.6rem);
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  section { padding-block: clamp(64px, 10vw, 120px); }
+
+  /* ---------- Hero ---------- */
+  .hero { padding-block: clamp(40px, 7vw, 88px) clamp(48px, 7vw, 96px); }
+  .hero h1 {
+    font-size: clamp(2.2rem, 5.6vw, 4.4rem);
+    line-height: 1.12;
+    letter-spacing: .02em;
+  }
+  .hero .tagline {
+    margin: 18px 0 0;
+    font-size: clamp(1.1rem, 2vw, 1.45rem);
+    color: var(--ink-soft);
+    letter-spacing: .04em;
+  }
+  .panels {
+    margin-top: clamp(36px, 5vw, 64px);
+    display: flex;
+    gap: 0;
+    height: clamp(380px, 46vw, 520px);
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0,0,0,.25);
+  }
+  .panel {
+    --bg: var(--teal-900);
+    flex: 1 1 0;
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 28px 18px;
+    text-align: center;
+    text-decoration: none;
+    transition: flex-grow .5s cubic-bezier(.2,.7,.2,1);
+    position: relative;
+    box-shadow: -18px 0 30px -12px rgba(0,0,0,.35);
+  }
+  .panel:first-child { box-shadow: none; }
+  .panel:hover, .panel:focus-visible { flex-grow: 1.6; }
+  .panel:nth-child(1) { --bg: var(--teal-900); }
+  .panel:nth-child(2) { --bg: var(--teal-800); }
+  .panel:nth-child(3) { --bg: var(--teal-700); }
+  .panel:nth-child(4) { --bg: var(--teal-400); color: var(--ink-on-light); }
+  .panel svg.icon { width: clamp(64px, 8vw, 104px); height: auto; stroke: currentColor; fill: none; stroke-width: 1.6; }
+  .panel h2 { font-size: clamp(1.25rem, 2.2vw, 1.9rem); letter-spacing: .06em; }
+  .panel p { margin: 0; color: var(--ink-soft); font-size: 1.15rem; }
+  .plus {
+    width: 30px; height: 30px; border-radius: 50%;
+    border: 2px solid var(--ink);
+    display: grid; place-items: center;
+    font-family: var(--body); font-size: 1.3rem; line-height: 1;
+    margin-top: 8px;
+    transition: transform .3s;
+  }
+  .panel:hover .plus { transform: rotate(90deg); }
+  .panel .contact-list {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; gap: 10px; text-align: left; font-size: 1.05rem;
+  }
+  .contact-list li { display: flex; align-items: center; gap: 10px; }
+  .contact-list svg { width: 20px; height: 20px; flex: none; fill: currentColor; }
+  .contact-list a { text-decoration: none; }
+  .contact-list a:hover { text-decoration: underline; }
+
+  /* ---------- About ---------- */
+  .about-grid {
+    margin-top: clamp(36px, 5vw, 64px);
+    display: grid;
+    grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
+    gap: clamp(32px, 6vw, 80px);
+    align-items: center;
+  }
+  .portrait {
+    aspect-ratio: 1;
+    border-radius: 50%;
+    padding: 10px;
+    background: var(--teal-700);
+    box-shadow: 0 0 0 10px rgba(13,111,115,.4);
+    max-width: 100%;
+  }
+  .portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 62% 40%; border-radius: 50%; }
+  .motto {
+    font-family: var(--display);
+    font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+    letter-spacing: .08em;
+    margin: 0 0 16px;
+  }
+  .about-copy p { margin: 0 0 1em; max-width: 64ch; color: var(--ink-soft); }
+  .about-copy p:first-of-type { color: var(--ink); }
+
+  /* ---------- Projects ---------- */
+  .carousel { position: relative; margin-top: clamp(36px, 5vw, 64px); }
+  .track {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(270px, calc((100% - 2 * 28px) / 3));
+    gap: 28px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    padding-bottom: 6px;
+  }
+  .track::-webkit-scrollbar { display: none; }
+  .project {
+    scroll-snap-align: start;
+    background: var(--card);
+    border-radius: 200px 200px 14px 14px;
+    padding: 12px 22px 28px;
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center;
+  }
+  .rings {
+    flex: none;
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    padding: 12px;
+    background: var(--teal-700);
+    box-shadow: inset 0 0 0 4px rgba(255,255,255,.08);
+  }
+  .rings img { width: 100%; height: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 50%; background: #fff; }
+  .rings img.contain { object-fit: contain; padding: 14%; }
+  .project h3 { margin-top: 22px; font-size: clamp(1.4rem, 2.2vw, 1.85rem); letter-spacing: .03em; }
+  .project p { margin: 12px 0 0; font-size: 1.08rem; color: var(--ink-soft); flex: 1; }
+  .project .more {
+    margin-top: 18px;
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 1rem; letter-spacing: .08em; text-transform: uppercase;
+    text-decoration: none;
+  }
+  .project .more:hover .plus { transform: rotate(90deg); }
+  .project .more .plus { margin: 0; width: 26px; height: 26px; font-size: 1.1rem; }
+  .project .no-link { margin-top: 18px; font-size: 1rem; color: var(--ink-muted); letter-spacing: .08em; text-transform: uppercase; }
+  .carousel-nav {
+    margin-top: 32px;
+    display: flex; align-items: center; justify-content: center; gap: 18px;
+  }
+  .carousel-nav button {
+    width: 40px; height: 40px; border-radius: 50%;
+    border: 2px solid var(--ink); background: transparent; color: var(--ink);
+    font-size: 1.2rem; cursor: pointer; display: grid; place-items: center;
+  }
+  .carousel-nav button:disabled { opacity: .4; cursor: default; }
+  .progress { width: min(260px, 50vw); height: 2px; background: rgba(255,255,255,.5); position: relative; }
+  .progress span { position: absolute; top: -3px; height: 8px; width: 25%; background: var(--ink); border-radius: 4px; left: 0; transition: left .2s; }
+
+  /* ---------- Timeline ---------- */
+  .timeline {
+    margin-top: clamp(40px, 6vw, 72px);
+    display: grid;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    grid-template-rows: auto 2px auto;
+    column-gap: 14px;
+  }
+  .timeline::before {
+    content: "";
+    grid-column: 1 / -1; grid-row: 2;
+    background: var(--ink);
+  }
+  .event {
+    grid-row: 1;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding-bottom: 14px;
+    border-left: 1px solid var(--ink-faint);
+    padding-left: 14px;
+    position: relative;
+    min-height: 260px;
+  }
+  .event:nth-child(even) { grid-row: 3; justify-content: flex-start; padding-top: 14px; padding-bottom: 0; }
+  .event:nth-child(1){grid-column:1} .event:nth-child(2){grid-column:2} .event:nth-child(3){grid-column:3} .event:nth-child(4){grid-column:4}
+  .event:nth-child(5){grid-column:5} .event:nth-child(6){grid-column:6} .event:nth-child(7){grid-column:7} .event:nth-child(8){grid-column:8}
+  .event::after {
+    content: ""; position: absolute; left: -7px;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--ink); box-shadow: 0 0 0 4px var(--teal-700);
+    bottom: -8px;
+  }
+  .event:nth-child(even)::after { bottom: auto; top: -8px; }
+  .logo {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: #fff; overflow: hidden;
+    display: grid; place-items: center;
+    margin-bottom: 14px;
+    box-shadow: 0 0 0 4px var(--teal-700);
+  }
+  .event:nth-child(even) .logo { order: 9; margin: 14px 0 0; }
+  .logo img { width: 100%; height: 100%; object-fit: contain; }
+  .season { font-family: var(--display); font-size: .9rem; letter-spacing: .14em; color: var(--ink-soft); }
+  .year { font-family: var(--display); font-size: 1.75rem; line-height: 1.1; color: var(--ink-soft); }
+  .role { margin-top: 6px; font-size: 1rem; line-height: 1.3; text-transform: uppercase; letter-spacing: .03em; }
+  .org { font-size: 1rem; color: var(--ink-soft); line-height: 1.3; }
+
+  /* ---------- Message form ---------- */
+  .contact-grid {
+    margin-top: clamp(36px, 5vw, 64px);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+    gap: clamp(32px, 6vw, 80px);
+    align-items: start;
+  }
+  .contact-intro p { margin: 0 0 1em; max-width: 42ch; color: var(--ink-soft); }
+  .contact-intro .contact-list { list-style: none; padding: 0; display: grid; margin: 24px 0 0; font-size: 1.1rem; gap: 14px; }
+  .form {
+    background: var(--card);
+    border-radius: 14px;
+    padding: clamp(22px, 3vw, 36px);
+    display: grid;
+    gap: 18px;
+  }
+  .field { display: grid; gap: 6px; }
+  .field label { font-family: var(--display); font-size: .9rem; letter-spacing: .12em; }
+  .field .req { color: var(--ink-muted); font-family: var(--body); letter-spacing: 0; font-size: .95rem; }
+  .field input, .field textarea {
+    font: inherit; font-size: 1.1rem;
+    color: var(--ink);
+    background: var(--teal-900);
+    border: 1px solid rgba(255,255,255,.55);   /* 3:1+ against the card, so the box edge is visible */
+    border-radius: 8px;
+    padding: 12px 14px;
+    width: 100%;
+  }
+  .field textarea { min-height: 150px; resize: vertical; }
+  .field input::placeholder, .field textarea::placeholder { color: var(--ink-muted); }
+  .field input:focus-visible, .field textarea:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; border-color: var(--ink); }
+  .field input[aria-invalid="true"], .field textarea[aria-invalid="true"] { border-width: 2px; border-style: dashed; }
+  .field .err { font-size: 1rem; min-height: 0; }
+  .field .err:not(:empty)::before { content: "⚠ "; }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .form-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 20px; }
+  .send {
+    font-family: var(--display); font-weight: 600; font-size: 1rem; letter-spacing: .12em;
+    color: var(--teal-900); background: var(--ink);
+    border: 0; border-radius: 999px; padding: 14px 28px; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .send:hover { background: #E4F1F1; }
+  .send:disabled { opacity: .6; cursor: progress; }
+  .status { margin: 0; font-size: 1.05rem; }
+  .status[data-kind="ok"]::before { content: "✓ "; }
+  .status[data-kind="error"]::before { content: "⚠ "; }
+  .panel .cta {
+    margin-top: 6px; font-family: var(--display); font-size: .85rem; letter-spacing: .12em;
+    border: 2px solid currentColor; border-radius: 999px; padding: 8px 16px; text-decoration: none;
+  }
+  .panel .cta:hover { background: var(--ink-on-light); color: var(--teal-400); }
+
+  /* ---------- Contact bar ---------- */
+  footer { background: var(--teal-800); padding-block: 22px calc(22px + env(safe-area-inset-bottom, 0px)); }
+  footer .wrap {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 32px;
+  }
+  footer .contact-list { display: flex; flex-wrap: wrap; gap: 14px 36px; list-style: none; margin: 0; padding: 0; }
+  footer small { color: var(--ink-soft); font-size: .95rem; }
+
+  /* ---------- Small screens ---------- */
+  @media (max-width: 860px) {
+    .panels { flex-wrap: wrap; height: auto; }
+    .panel { flex: 1 1 50%; min-height: 240px; box-shadow: none; }
+    .panel:hover { flex-grow: 1; }
+    .about-grid { grid-template-columns: 1fr; justify-items: center; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .portrait { width: min(300px, 80%); }
+    .about-copy { text-align: left; }
+    .track { grid-auto-columns: 82%; }
+    .timeline { grid-template-columns: 2px 1fr; grid-template-rows: none; column-gap: 0; row-gap: 26px; }
+    .timeline::before { grid-column: 1; grid-row: 1 / span 8; }
+    .timeline .event {
+      grid-column: 2; grid-row: auto;
+      min-height: 0; border-left: 0; padding: 0 0 0 26px;
+      display: grid; grid-template-columns: 56px minmax(0, 1fr); column-gap: 16px; align-items: start;
+    }
+    .timeline .event > span { grid-column: 2; }
+    .timeline .event::after { left: -7px; top: 26px; bottom: auto; }
+    .timeline .event .logo { order: 0; margin: 0; width: 56px; height: 56px; grid-row: 1 / span 4; }
+  }
+  @media (max-width: 480px) {
+    .panel { flex-basis: 100%; min-height: 200px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .panel, .plus, .progress span { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Inline icon set (white line icons, matching the deck) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm1 2.2V17h16V7.2l-8 5.3zM5.4 7 12 11.4 18.6 7z"/></symbol>
+  <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm2.3 7.3V18h2.5v-7.7zm1.25-3.9a1.45 1.45 0 1 0 0 2.9 1.45 1.45 0 0 0 0-2.9zM10.6 10.3V18h2.5v-3.8c0-1 .2-2 1.45-2s1.25 1.15 1.25 2.05V18h2.5v-4.3c0-2.1-.45-3.6-2.9-3.6a2.5 2.5 0 0 0-2.3 1.25v-1.05z"/></symbol>
+  <symbol id="i-github" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.15-1.11-1.46-1.11-1.46-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.1.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.3 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85V21c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></symbol>
+</svg>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>Hi, I’m Haveenash Umamaheswaran</h1>
+    <p class="tagline">Robotic Engineer | Sensor Fusion &amp; Controls | ROS Developer</p>
+
+    <nav class="panels" aria-label="Sections">
+      <a class="panel" href="#about">
+        <svg class="icon" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="20" r="11"/><path d="M12 58c0-12 9-20 20-20s20 8 20 20"/><path d="M22 12c3-5 17-5 20 1"/></svg>
+        <h2>ABOUT ME</h2>
+        <p>Who Am I ?</p>
+        <span class="plus" aria-hidden="true">+</span>
+      </a>
+      <a class="panel" href="#projects">
+        <svg class="icon" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 12a15 15 0 0 0-9 27c2 1.6 3 3.6 3 6v3h12v-3c0-2.4 1-4.4 3-6a15 15 0 0 0-9-27z"/><path d="M26 53h12M28 58h8"/><path d="M32 2v4M10 10l3 3M54 10l-3 3M4 30h4M56 30h4"/></svg>
+        <h2>PROJECTS</h2>
+        <p>Creation &amp; Development.</p>
+        <span class="plus" aria-hidden="true">+</span>
+      </a>
+      <a class="panel" href="#experience">
+        <svg class="icon" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="10" r="6"/><path d="M26 22h12v4H26z"/><rect x="18" y="26" width="28" height="18" rx="2"/><path d="M6 44h16v12H6zM42 44h16v12H42zM24 44h16v12H24z"/></svg>
+        <h2>EXPERIENCE</h2>
+        <p>My Journey !</p>
+        <span class="plus" aria-hidden="true">+</span>
+      </a>
+      <div class="panel" id="contact-panel">
+        <svg class="icon" viewBox="0 0 64 64" aria-hidden="true"><path d="M6 8h36a4 4 0 0 1 4 4v18a4 4 0 0 1-4 4H22l-10 8v-8H6a4 4 0 0 1-4-4V12a4 4 0 0 1 4-4z"/><path d="M50 22h8a4 4 0 0 1 4 4v18a4 4 0 0 1-4 4h-4v8l-10-8H30a4 4 0 0 1-4-4v-4"/><path d="M12 16h24M12 22h24M12 28h14"/></svg>
+        <h2>CONTACT</h2>
+        <ul class="contact-list">
+          <li><svg aria-hidden="true"><use href="#i-phone"/></svg><a href="tel:+17633397871">+1 763 339 7871</a></li>
+          <li><svg aria-hidden="true"><use href="#i-mail"/></svg><a href="mailto:haveenashsrm@gmail.com">haveenashsrm@gmail.com</a></li>
+          <li><svg aria-hidden="true"><use href="#i-linkedin"/></svg><a href="https://www.linkedin.com/in/haveenash-umamaheswaran/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><svg aria-hidden="true"><use href="#i-github"/></svg><a href="https://github.com/Havee005" target="_blank" rel="noopener">GitHub</a></li>
+        </ul>
+        <a class="cta" href="#message">SEND A MESSAGE</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section id="about">
+    <div class="wrap">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-grid">
+        <div class="portrait"><img src="assets/img/profile.jpg" alt="Haveenash with a group of mobile robots outside a university building" width="900" height="600"></div>
+        <div class="about-copy">
+          <p class="motto">LET YOUR INNOVATION MEET YOUR DREAM !</p>
+          <p>Ever since vividly remembering my dream of transforming my RC car into an autonomous vehicle, I have been inspired to pursue a career in robotics. That early spark of curiosity grew into a deep fascination with how machines perceive, move and interact with the world.</p>
+          <p>Over the years, I’ve explored this passion through hands-on projects, academic research and collaborative learning. My journey has taken me into the worlds of perception, control and autonomy, where I find joy in solving real-world problems through thoughtful engineering. I’m continually driven by the belief that robotics has the potential to make our lives safer and more efficient, and I’m excited to keep learning and building toward that vision.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <h2 class="section-title">Project</h2>
+      <div class="carousel">
+        <div class="track" id="track" tabindex="0" aria-label="Projects, scroll sideways for more">
+          <article class="project">
+            <div class="rings"><img src="assets/img/spyder.jpg" alt="Spyder six-wheeled rover on pavement" loading="lazy"></div>
+            <h3>Spyder</h3>
+            <p>Autonomous AgRover, a six-wheeled rover with Rocker-Bogie suspension, built for all-terrain navigation and robust performance in unstructured, data-driven agricultural environments.</p>
+            <a class="more" href="https://www.linkedin.com/posts/adityapachpute_spyder-rooted-in-tech-rising-in-yield-ugcPost-7328853697474560000-rAJJ" target="_blank" rel="noopener"><span class="plus" aria-hidden="true">+</span>View post</a>
+          </article>
+          <article class="project">
+            <div class="rings"><img src="assets/img/velo-vision.jpg" alt="Lidar point cloud projected onto a camera image" loading="lazy"></div>
+            <h3>Velo-Vision</h3>
+            <p>Applied the late sensor fusion concept by projecting 3D point cloud data onto a 2D camera frame, so the sensors of an autonomous vehicle perceive the world at the same time.</p>
+            <a class="more" href="https://github.com/Havee005/Velo-Vision" target="_blank" rel="noopener"><span class="plus" aria-hidden="true">+</span>View code</a>
+          </article>
+          <article class="project">
+            <div class="rings"><img class="contain" src="assets/img/visionmouse.jpg" alt="Eye with a mouse cursor icon" loading="lazy"></div>
+            <h3>VisionMouse</h3>
+            <p>Revolutionizing how we interact with computers. An intuitive approach that uses eye movements and blinks to navigate, click and control seamlessly.</p>
+            <a class="more" href="https://github.com/Havee005/VisionMouse" target="_blank" rel="noopener"><span class="plus" aria-hidden="true">+</span>View code</a>
+          </article>
+          <article class="project">
+            <div class="rings"><img src="assets/img/auto-tank.jpg" alt="Auto-tank mobile robot in an indoor hall" loading="lazy"></div>
+            <h3>Auto-tank</h3>
+            <p>An autonomous mobile robot built for indoor navigation with differential drive. Configured ROS nodes to handle motor commands, encoder data, read Lidar data and perform SLAM.</p>
+            <span class="no-link">Link coming soon</span>
+          </article>
+          <article class="project">
+            <div class="rings"><img src="assets/img/flexible-manipulator.jpg" alt="Segmented continuum robot arm" loading="lazy"></div>
+            <h3>Flexible Manipulator</h3>
+            <p>The Continuum Robot mimics the bending motion of biological creatures like octopus tentacles and elephant trunks. Its flexibility makes it ideal for minimally invasive surgery and fruit picking tasks.</p>
+            <a class="more" href="https://github.com/Havee005/Flexible-Manipulator" target="_blank" rel="noopener"><span class="plus" aria-hidden="true">+</span>View code</a>
+          </article>
+          <article class="project">
+            <div class="rings"><img src="assets/img/electric-cycle.jpg" alt="Bicycle converted to an electric bike" loading="lazy"></div>
+            <h3>Electric Cycle</h3>
+            <p>With rising fuel costs, we built an affordable, efficient and eco-friendly e-bike tailored for delivery workers. Modified from a regular bicycle, it offers a 60 km range on a full charge and reaches speeds up to 35 km/h.</p>
+            <span class="no-link">Link coming soon</span>
+          </article>
+          <article class="project">
+            <div class="rings"><img src="assets/img/wall-cutting-robot.jpg" alt="Team presenting the wall cutting robot at an exhibition" loading="lazy"></div>
+            <h3>Wall Cutting Robot</h3>
+            <p>This wall-cutting robot operates via smartphone within a 20-meter range, efficiently carving spaces for electrical and plumbing lines. Automating the task minimizes dust exposure and health risks for workers.</p>
+            <span class="no-link">Link coming soon</span>
+          </article>
+        </div>
+        <div class="carousel-nav">
+          <button type="button" id="prev" aria-label="Previous projects">&#8592;</button>
+          <div class="progress" aria-hidden="true"><span id="bar"></span></div>
+          <button type="button" id="next" aria-label="Next projects">&#8594;</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <h2 class="section-title">Timeline</h2>
+      <ol class="timeline" style="list-style:none;padding:0">
+        <li class="event">
+          <div class="logo"><img src="assets/img/logo-srm.png" alt="SRM University logo" ></div>
+          <span class="season">FALL</span><span class="year">2018</span>
+          <span class="role">Freshman’s, Electrical Engineering</span><span class="org">SRM University</span>
+        </li>
+        <li class="event">
+          <div class="logo"><img src="assets/img/logo-leading-edge.png" alt="Leading Edge Futuring Technology logo" ></div>
+          <span class="season">WINTER</span><span class="year">2019</span>
+          <span class="role">Robotics Certification</span><span class="org">Leading Edge Futuring Tech.</span>
+        </li>
+        <li class="event">
+          <div class="logo"><img src="assets/img/logo-coursera.png" alt="Coursera logo" ></div>
+          <span class="season">SUMMER</span><span class="year">2020</span>
+          <span class="role">IoT and Embedded System</span><span class="org">Arduino &amp; C Programming</span>
+        </li>
+        <li class="event">
+          <div class="logo"><img src="assets/img/logo-vbind.png" alt="VBIND Innovations logo" ></div>
+          <span class="season">SUMMER</span><span class="year">2021</span>
+          <span class="role">Intern, Product &amp; Development</span><span class="org">VBIND Innovations</span>
+        </li>
+        <li class="event">
+          <div class="logo"><img src="assets/img/logo-srm.png" alt="SRM University logo" ></div>
+          <span class="season">SUMMER</span><span class="year">2022</span>
+          <span class="role">Graduation</span><span class="org">SRM University</span>
+        </li>
+        <li class="event">
+          <div class="logo"><img src="assets/img/logo-atumx.png" alt="ATUMX logo" ></div>
+          <span class="season">FALL</span><span class="year">2022</span>
+          <span class="role">Robotic Engineer</span><span class="org">ATUMX</span>
+        </li>
+        <li class="event">
+          <div class="logo"><img src="assets/img/logo-umn.png" alt="University of Minnesota logo" ></div>
+          <span class="season">FALL</span><span class="year">2023</span>
+          <span class="role">Master’s, Robotics</span><span class="org">University of Minnesota</span>
+        </li>
+        <li class="event">
+          <div class="logo"><img src="assets/img/logo-umn.png" alt="University of Minnesota logo" ></div>
+          <span class="season">SPRING</span><span class="year">2025</span>
+          <span class="role">Research Assistant</span><span class="org">University of Minnesota</span>
+        </li>
+      </ol>
+    </div>
+  </section>
+  <section id="message">
+    <div class="wrap">
+      <h2 class="section-title">Get in Touch</h2>
+      <div class="contact-grid">
+        <div class="contact-intro">
+          <p>Working on something in robotics, perception or controls? Have a role, a research idea or a question about one of my projects? Send me a message and I’ll get back to you.</p>
+          <ul class="contact-list">
+            <li><svg aria-hidden="true"><use href="#i-mail"/></svg><a href="mailto:haveenashsrm@gmail.com">haveenashsrm@gmail.com</a></li>
+            <li><svg aria-hidden="true"><use href="#i-linkedin"/></svg><a href="https://www.linkedin.com/in/haveenash-umamaheswaran/" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><svg aria-hidden="true"><use href="#i-github"/></svg><a href="https://github.com/Havee005" target="_blank" rel="noopener">GitHub</a></li>
+          </ul>
+        </div>
+
+        <!-- Formspree form: messages are forwarded to the owner's inbox -->
+        <form class="form" id="contact-form" action="https://formspree.io/f/xqpagoqw" method="POST" novalidate>
+          <div class="field">
+            <label for="cf-name">NAME <span class="req">(required)</span></label>
+            <input id="cf-name" name="name" type="text" autocomplete="name" required aria-describedby="cf-name-err" placeholder="Your name">
+            <span class="err" id="cf-name-err" aria-live="polite"></span>
+          </div>
+          <div class="field">
+            <label for="cf-email">EMAIL <span class="req">(required)</span></label>
+            <input id="cf-email" name="email" type="email" autocomplete="email" required aria-describedby="cf-email-err" placeholder="you@example.com">
+            <span class="err" id="cf-email-err" aria-live="polite"></span>
+          </div>
+          <div class="field">
+            <label for="cf-subject">SUBJECT</label>
+            <input id="cf-subject" name="subject" type="text" placeholder="Job opportunity, collaboration, question…">
+          </div>
+          <div class="field">
+            <label for="cf-message">MESSAGE <span class="req">(required)</span></label>
+            <textarea id="cf-message" name="message" required aria-describedby="cf-message-err" placeholder="Write your message"></textarea>
+            <span class="err" id="cf-message-err" aria-live="polite"></span>
+          </div>
+          <!-- Spam trap: real visitors never see or fill this -->
+          <div class="hp" aria-hidden="true"><label for="cf-gotcha">Leave empty</label><input id="cf-gotcha" type="text" name="_gotcha" tabindex="-1" autocomplete="off"></div>
+          <input type="hidden" name="_subject" value="New message from your portfolio site">
+          <div class="form-foot">
+            <button class="send" type="submit" id="cf-send">SEND MESSAGE <span aria-hidden="true">&#8594;</span></button>
+            <p class="status" id="cf-status" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <ul class="contact-list">
+      <li><svg aria-hidden="true"><use href="#i-phone"/></svg><a href="tel:+17633397871">+1 763 339 7871</a></li>
+      <li><svg aria-hidden="true"><use href="#i-mail"/></svg><a href="mailto:haveenashsrm@gmail.com">haveenashsrm@gmail.com</a></li>
+      <li><svg aria-hidden="true"><use href="#i-linkedin"/></svg><a href="https://www.linkedin.com/in/haveenash-umamaheswaran/" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><svg aria-hidden="true"><use href="#i-github"/></svg><a href="https://github.com/Havee005" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+    <small>© <span id="yr">2026</span> Haveenash Umamaheswaran</small>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var track = document.getElementById('track');
+    var prev = document.getElementById('prev');
+    var next = document.getElementById('next');
+    var bar = document.getElementById('bar');
+    function step() {
+      var card = track.querySelector('.project');
+      return card ? card.getBoundingClientRect().width + 28 : track.clientWidth;
+    }
+    function update() {
+      var max = track.scrollWidth - track.clientWidth;
+      var ratio = max > 0 ? track.scrollLeft / max : 0;
+      var visible = max > 0 ? track.clientWidth / track.scrollWidth : 1;
+      bar.style.width = (visible * 100) + '%';
+      bar.style.left = (ratio * (100 - visible * 100)) + '%';
+      prev.disabled = track.scrollLeft <= 2;
+      next.disabled = track.scrollLeft >= max - 2;
+    }
+    prev.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
+    next.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: 'smooth' }); });
+    track.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+    document.getElementById('yr').textContent = new Date().getFullYear();
+  })();
+  (function () {
+    var form = document.getElementById('contact-form');
+    var send = document.getElementById('cf-send');
+    var status = document.getElementById('cf-status');
+    var checks = [
+      ['cf-name', function (v) { return v.trim() ? '' : 'Please enter your name.'; }],
+      ['cf-email', function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) ? '' : 'Please enter a valid email address, like name@example.com.'; }],
+      ['cf-message', function (v) { return v.trim() ? '' : 'Please write a message.'; }]
+    ];
+    function validate() {
+      var first = null;
+      checks.forEach(function (c) {
+        var el = document.getElementById(c[0]);
+        var msg = c[1](el.value);
+        document.getElementById(c[0] + '-err').textContent = msg;
+        el.setAttribute('aria-invalid', msg ? 'true' : 'false');
+        if (msg && !first) first = el;
+      });
+      if (first) first.focus();
+      return !first;
+    }
+    function say(kind, text) { status.dataset.kind = kind; status.textContent = text; }
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!validate()) { say('error', 'Please fix the highlighted fields.'); return; }
+      if (form.action.indexOf('YOUR_FORM_ID') !== -1) {
+        say('error', 'The form isn’t connected yet. Please email haveenashsrm@gmail.com instead.');
+        return;
+      }
+      send.disabled = true;
+      say('', 'Sending…');
+      fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
+        .then(function (r) {
+          if (r.ok) { form.reset(); say('ok', 'Thanks! Your message was sent. I’ll reply by email soon.'); return; }
+          return r.json().then(function (d) {
+            var m = d && d.errors ? d.errors.map(function (x) { return x.message; }).join(' ') : '';
+            say('error', 'Your message couldn’t be sent. ' + (m || 'Please try again, or email haveenashsrm@gmail.com.'));
+          });
+        })
+        .catch(function () { say('error', 'Your message couldn’t be sent. Check your connection and try again, or email haveenashsrm@gmail.com.'); })
+        .then(function () { send.disabled = false; });
+    });
+  })();
+</script>
+</body>
+</html>
