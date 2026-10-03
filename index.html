@@ -139,7 +139,8 @@
     letter-spacing: .08em;
     margin: 0 0 16px;
   }
-  .about-copy p { margin: 0 0 1em; max-width: 64ch; color: var(--ink-soft); }
+  .about-copy p { margin: 0 0 1em; max-width: 64ch; color: var(--ink-soft); text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+  .about-copy p.motto { text-align: left; }
   .about-copy p:first-of-type { color: var(--ink); }
 
   /* ---------- Projects ---------- */
@@ -314,7 +315,6 @@
     .about-grid { grid-template-columns: 1fr; justify-items: center; }
     .contact-grid { grid-template-columns: 1fr; }
     .portrait { width: min(300px, 80%); }
-    .about-copy { text-align: left; }
     .track { grid-auto-columns: 82%; }
     .timeline { grid-template-columns: 2px 1fr; grid-template-rows: none; column-gap: 0; row-gap: 26px; }
     .timeline::before { grid-column: 1; grid-row: 1 / span 8; }
@@ -393,9 +393,10 @@
         <div class="portrait"><img src="assets/img/profile.jpg" alt="Haveenash with a group of mobile robots outside a university building" width="900" height="600"></div>
         <div class="about-copy">
           <p class="motto">LET YOUR INNOVATION MEET YOUR DREAM!</p>
-          <p>It started with a stubborn idea: turning my old RC car into something that could sense its surroundings and move on its own. That spark never faded. It grew into a fascination with how machines perceive the world, decide what to do, and act within it.</p>
-          <p>Hands-on projects, academic research and people who pushed me to think differently led me into perception, control and autonomy. Along the way I learned that good engineering isn’t just getting something to work. It’s getting it to hold up when the world doesn’t behave the way you expect.</p>
-          <p>That’s what drives me now: the belief that thoughtful robotics can quietly make everyday life safer and more efficient. In many ways, I’m still that kid who wanted his RC car to think for itself — just with more math, more patience, and a lot more left to learn.</p>
+          <p>It began with a simple idea, turning my old RC car into something that could sense its surroundings and move on its own. That curiosity sparked my journey into robotics and grew into a fascination with how machines perceive, decide, and act.</p>
+          <p>Through hands-on projects, academic research, and collaboration, I’ve explored perception, control, and autonomy, developing robots that operate beyond controlled environments.</p>
+          <p>I’ve learned that good engineering goes beyond making something work; it’s about understanding its environment and designing it to work within it.</p>
+          <p>That belief drives me to build robots that make everyday life safer and more efficient. In many ways, I’m still that kid who wanted his RC car to think for itself but just with more math, more patience, and much more to learn.</p>
         </div>
       </div>
     </div>
