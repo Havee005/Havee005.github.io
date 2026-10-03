@@ -17,6 +17,7 @@
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+html, body { overflow-x: clip; }   /* safety net against sideways page scroll */
 body {
   margin: 0;
   background: var(--teal-900);

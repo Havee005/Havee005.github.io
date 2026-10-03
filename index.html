@@ -29,6 +29,7 @@
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
+  html, body { overflow-x: clip; }   /* safety net against sideways page scroll */
   body {
     margin: 0;
     background: var(--teal-900);
@@ -146,6 +147,7 @@
   /* ---------- Projects ---------- */
   .carousel { position: relative; margin-top: clamp(36px, 5vw, 64px); }
   .track {
+    position: relative;   /* keeps absolutely positioned children (screen-reader labels) inside the scroller */
     display: grid;
     grid-auto-flow: column;
     grid-auto-columns: minmax(270px, calc((100% - 2 * 28px) / 3));
